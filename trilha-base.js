@@ -1,11 +1,11 @@
 /**
- * Você trabalha em uma exchange de criptomoedas. O Bitcoin (BTC) é fracionável em até 8 casas decimais. A menor unidade do Bitcoin se chama Satoshi (1 BTC = 100.000.000 Satoshis).
- * Se você tentar somar frações de Bitcoin diretamente no JavaScript (ex: 0.10000000 + 0.20000000), a linguagem vai gerar um erro de precisão matemática e a sua empresa perderá dinheiro.
- * Sua missão é criar as funções de saque e depósito, mas com uma regra vital: A memória do servidor (variável) só pode guardar números INTEIROS (Satoshis).
- * O Código Base (Copie e cole no seu arquivo carteira-basica.js):
- *
- * Critério de aceite: A função de teste unitário não deve printar nenhum erro no terminal!
- */
+* Você trabalha em uma exchange de criptomoedas. O Bitcoin (BTC) é fracionável em até 8 casas decimais. A menor unidade do Bitcoin se chama Satoshi (1 BTC = 100.000.000 Satoshis).
+* Se você tentar somar frações de Bitcoin diretamente no JavaScript (ex: 0.10000000 + 0.20000000), a linguagem vai gerar um erro de precisão matemática e a sua empresa perderá dinheiro.
+* Sua missão é criar as funções de saque e depósito, mas com uma regra vital: A memória do servidor (variável) só pode guardar números INTEIROS (Satoshis).
+* O Código Base (Copie e cole no seu arquivo carteira-basica.js):
+*
+* Critério de aceite: A função de teste unitário não deve printar nenhum erro no terminal!
+*/
 
 // Memória do Servidor
 const CONVERSION_FACTOR = 100000000; // 1 BTC = 100 milhões de Satoshis
@@ -13,10 +13,12 @@ const wallet = {
   satoshiCredits: 0,
   locked: false,
 };
+
 const wallet2 = {
   satoshiCredits: 0,
   locked: false,
 };
+
 const wallet3 = {
   satoshiCredits: 0,
   locked: true,
@@ -26,24 +28,12 @@ const wallet3 = {
 // 1. Crie a Função de Depósito
 // ==========================================
 function depositBTC(btcValue, wallet) {
-  if (Number.isNaN(btcValue)) return;
-  if (wallet.locked) throw new Error("Wallet is locked");
-
-  let valorSatoshi = Math.floor(Number(btcValue) * CONVERSION_FACTOR);
-  if (wallet.satoshiCredits <= 0) console.log("valor insuficiente");
-  wallet.satoshiCredits += valorSatoshi;
 }
 
 // ==========================================
 // 2. Crie a Função de Saque
 // ==========================================
 function withdrawBTC(btcValue, wallet) {
-  if (Number.isNaN(btcValue)) return;
-  if (wallet.locked) throw new Error("Wallet is locked");
-
-  let valorSatoshi = Math.floor(Number(btcValue) * CONVERSION_FACTOR);
-  if (wallet.satoshiCredits <= 0) console.log("valor insuficiente");
-  wallet.satoshiCredits -= valorSatoshi;
 }
 
 function unitTests() {
