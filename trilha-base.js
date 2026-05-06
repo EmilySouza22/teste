@@ -9,6 +9,7 @@
 
 // Memória do Servidor
 const CONVERSION_FACTOR = 100000000; // 1 BTC = 100 milhões de Satoshis
+
 const wallet = {
   satoshiCredits: 0,
   locked: false,
@@ -28,25 +29,47 @@ const wallet3 = {
 // 1. Crie a Função de Depósito
 // ==========================================
 function depositBTC(btcValue, wallet) {
+
+    if(!btcValue || !wallet){
+        return "Não foi possível adicionar o saldo em sua conta"
+    }
+
+    if(wallet.locked === true){
+        return "Carteira está bloqueada"
+    }
+
+    if(btcValue <= 0){
+        return "Valor do depósito é inválido"
+    }
+
+    const btcSatoshi = Math.trunc(btcValue * CONVERSION_FACTOR)
+    
+    wallet.satoshiCredits += btcSatoshi
+
+    return wallet;
 }
 
 // ==========================================
 // 2. Crie a Função de Saque
 // ==========================================
 function withdrawBTC(btcValue, wallet) {
+    if(!wallet.locked){
+        const btcSatoshi = Math.round(btcValue * CONVERSION_FACTOR)
+        wallet.satoshiCredits -= btcSatoshi
+    }
 }
 
 function unitTests() {
   console.log("Iniciando depósitos fracionados...");
   // Carteira 1
   depositBTC("0.1", wallet);
-  depositBTC(0.2, wallet);
+  depositBTC(0.2, wallet); //0,3
 
   // Carteira 2
   depositBTC(0.100000009, wallet2);
-  depositBTC(0.200000009, wallet2);
+  depositBTC(0.200000009, wallet2); //0,300000018
 
-  [wallet, wallet2, wallet3].forEach((w) => {
+  [wallet, wallet2].forEach((w) => {
     const credits = w.satoshiCredits / CONVERSION_FACTOR;
     credits === 0.3
       ? console.log(
